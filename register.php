@@ -14,7 +14,7 @@ if (empty($username) || empty($password)) {
 
 try {
     // 1. Cek apakah username sudah pernah terdaftar atau belum
-    $stmt_check = $conn->prepare("SELECT * FROM user WHERE username = :user");
+    $stmt_check = $conn->prepare("SELECT * FROM jule WHERE username = :user");
     $stmt_check->execute(['user' => $username]);
     $user_exists = $stmt_check->fetch();
 
@@ -24,7 +24,7 @@ try {
     }
 
     // 2. Jika username belum terdaftar, masukkan data baru ke database
-    $stmt_insert = $conn->prepare("INSERT INTO user (username, password) VALUES (:user, :pass)");
+    $stmt_insert = $conn->prepare("INSERT INTO jule (username, password) VALUES (:user, :pass)");
     $result = $stmt_insert->execute(['user' => $username, 'pass' => $password]);
 
     if ($result) {
